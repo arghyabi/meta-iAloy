@@ -6,10 +6,18 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 DEPENDS += "qtbase"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "file://iAloy"
+SRC_URI = " \
+file://iAloy \
+file://back.jpg \
+file://dashboard.jpg\
+"
 S = "${WORKDIR}"
 
 do_install() {
 	install -d ${D}${bindir}
 	install -m 0755 iAloy ${D}${bindir}
+
+	install -d ${D}${datadir}/iAloy/photos/
+	install -m 0644 back.jpg ${D}${datadir}/iAloy/photos/
+	install -m 0644 dashboard.jpg ${D}${datadir}/iAloy/photos/
 }
