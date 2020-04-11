@@ -1,0 +1,13 @@
+[Unit]
+Description=vnc support onboot
+
+[Service]
+Type=simple
+Restart=no
+StandardOutput=syslog
+StandardError=syslog
+ExecStart=/usr/bin/x11vnc -noipv6 -rawfb /dev/fb0 -clip WxH
+
+[Install]
+WantedBy=multi-user.target
+

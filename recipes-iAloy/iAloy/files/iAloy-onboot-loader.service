@@ -7,6 +7,7 @@ Restart=no
 StandardOutput=syslog
 StandardError=syslog
 Environment=QT_QPA_PLATFORM=eglfs
+Requires=iAloy-update-manger.service
 ExecStart=/usr/bin/iAloy
 
 [Install]

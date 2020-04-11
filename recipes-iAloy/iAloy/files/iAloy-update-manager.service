@@ -1,0 +1,13 @@
+[Unit]
+Description=iAloy update manager
+
+[Service]
+Type=simple
+Restart=no
+StandardOutput=syslog
+StandardError=syslog
+ExecStart=/usr/share/iAloy/update_check/update_check.sh
+
+[Install]
+WantedBy=multi-user.target
+

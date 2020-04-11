@@ -8,10 +8,11 @@ DEPENDS += "qtbase"
 SRCREV = "${AUTOREV}"
 SRC_URI = " \
 file://iAloy \
-file://back.jpg \
-file://dashboard.jpg \
-file://iAloy-interface-up.sh \
-file://iAloy-onboot-loader.service \
+file://*.jpg \
+file://*.png \
+file://*.ttf \
+file://*.sh \
+file://*.service \
 "
 S = "${WORKDIR}"
 
@@ -23,12 +24,21 @@ do_install() {
 
 	install -d ${D}${datadir}/iAloy/photos/
 	install -d ${D}${datadir}/iAloy/scripts/
-	install -m 0644 back.jpg ${D}${datadir}/iAloy/photos/
-	install -m 0644 dashboard.jpg ${D}${datadir}/iAloy/photos/
-	install -m 0755 iAloy-interface-up.sh ${D}${datadir}/iAloy/scripts/
+	install -d ${D}${datadir}/iAloy/fonts/
+	install -d ${D}${datadir}/iAloy/update_check/
+	install -d ${D}${datadir}/iAloy/.conf/
+	install -d ${D}${datadir}/iAloy/.temp/
+
+	install -m 0644 *.jpg ${D}${datadir}/iAloy/photos/
+	install -m 0644 *.png ${D}${datadir}/iAloy/photos/
+	install -m 0644 *.ttf ${D}${datadir}/iAloy/fonts/
+	install -m 0755 *.sh ${D}${datadir}/iAloy/scripts/
+	install -m 0755 update_check.sh ${D}${datadir}/iAloy/update_check/
 
 	install -d ${D}${systemd_unitdir}/system
 	install -m 0644 iAloy-onboot-loader.service ${D}${systemd_unitdir}/system/
+	install -m 0644 iAloy-update-manager.service ${D}${systemd_unitdir}/system/
 }
 
 SYSTEMD_SERVICE_${PN} = "iAloy-onboot-loader.service"
+SYSTEMD_SERVICE_${PN} += "iAloy-update-manager.service"
