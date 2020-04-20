@@ -13,6 +13,7 @@ file://*.png \
 file://*.ttf \
 file://*.sh \
 file://*.service \
+file://libwiringPi.so.1.1 \
 "
 S = "${WORKDIR}"
 
@@ -28,11 +29,15 @@ do_install() {
 	install -d ${D}${datadir}/iAloy/update_check/
 	install -d ${D}${datadir}/iAloy/.conf/
 	install -d ${D}${datadir}/iAloy/.temp/
+	install -d ${D}${libdir}/
 
 	install -m 0644 *.jpg ${D}${datadir}/iAloy/photos/
 	install -m 0644 *.png ${D}${datadir}/iAloy/photos/
 	install -m 0644 *.ttf ${D}${datadir}/iAloy/fonts/
 	install -m 0755 *.sh ${D}${datadir}/iAloy/scripts/
+	install -m 0755 libwiringPi.so.1.1 ${D}${libdir}/
+	ln -sf libwiringPi.so.1.1 ${D}/${libdir}/libwiringPi.so
+
 	install -m 0755 update_check.sh ${D}${datadir}/iAloy/update_check/
 
 	install -d ${D}${systemd_unitdir}/system
