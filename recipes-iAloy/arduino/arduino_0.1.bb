@@ -36,6 +36,7 @@ do_install() {
 	install -m 0755 libreadline.so.7 ${D}${libdir}/
 	install -m 0755 libtinfo.so.6 ${D}${libdir}/
 	install -m 0755 libusb-0.1.so.4 ${D}${libdir}/
+
 	ln -sf libftdi.so.1 ${D}/${libdir}/libftdi.so
 	ln -sf libhidapi-libusb.so.0 ${D}/${libdir}/libhidapi-libusb.so
 	ln -sf libncurses.so.6 ${D}/${libdir}/libncurses.so
